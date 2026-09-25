@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>خط بوستان زر ↔ اصفهان</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&family=Great+Vibes&family=Poppins:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #0f5132;
+    --green-main: #1f8a4c;
+    --green-soft: #eaf5ee;
+    --turquoise: #3fa9a0;
+    --amber: #e8a33d;
+    --panel: rgba(255,255,255,0.88);
+    --panel-dim: rgba(255,255,255,0.55);
+    --text-dark: #17332a;
+    --text-dim: #5c6b64;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    height: 100%;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+  }
+
+  body {
+    min-height: 100vh;
+    background-image: url('bg.png');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wrap {
+    width: 100%;
+    max-width: 430px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 22px 16px 30px;
+  }
+
+  .top-title {
+    text-align: center;
+    color: var(--green-deep);
+    text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+  }
+
+  .top-logo-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+
+  .top-logo-wrap img {
+    height: 108px;
+    width: auto;
+    display: block;
+  }
+
+  .top-title .line-name {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    opacity: 0.85;
+  }
+
+  .top-title h1 {
+    margin: 4px 0 0;
+    font-size: 19px;
+    font-weight: 700;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+  }
+
+  .spacer { flex: 1 1 auto; min-height: 6vh; }
+
+  .sheet {
+    background: var(--panel);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border-radius: 26px 26px 22px 22px;
+    padding: 18px 16px 20px;
+    box-shadow: 0 20px 50px rgba(15, 81, 50, 0.25);
+    border: 1px solid rgba(255,255,255,0.6);
+  }
+
+  .next-card {
+    background: linear-gradient(135deg, var(--green-main), var(--green-deep));
+    border-radius: 18px;
+    padding: 16px 18px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    box-shadow: 0 8px 20px rgba(15,81,50,0.35);
+  }
+
+  .next-card.ended {
+    background: linear-gradient(135deg, #7c8b83, #4c5851);
+  }
+
+  .next-info .label {
+    font-size: 12px;
+    opacity: 0.85;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--amber);
+    display: inline-block;
+    animation: pulse 1.4s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(232,163,61,0.5); }
+    50% { opacity: 0.6; box-shadow: 0 0 0 6px rgba(232,163,61,0); }
+  }
+
+  .next-info .time {
+    font-size: 30px;
+    font-weight: 800;
+    margin-top: 2px;
+    direction: ltr;
+    display: inline-block;
+  }
+
+  .next-info .from {
+    font-size: 12px;
+    opacity: 0.9;
+    margin-top: 2px;
+  }
+
+  .countdown {
+    text-align: center;
+    background: rgba(255,255,255,0.18);
+    border-radius: 14px;
+    padding: 8px 14px;
+    min-width: 78px;
+  }
+
+  .countdown .num {
+    font-size: 22px;
+    font-weight: 800;
+    line-height: 1;
+  }
+
+  .countdown .txt {
+    font-size: 10px;
+    opacity: 0.85;
+    margin-top: 3px;
+  }
+
+  .tabs {
+    display: flex;
+    margin-top: 16px;
+    background: rgba(15,81,50,0.08);
+    border-radius: 14px;
+    padding: 4px;
+    gap: 4px;
+  }
+
+  .tab {
+    flex: 1;
+    text-align: center;
+    padding: 10px 0;
+    border-radius: 11px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease;
+    user-select: none;
+  }
+
+  .tab.active {
+    background: var(--green-main);
+    color: #fff;
+    box-shadow: 0 4px 10px rgba(31,138,76,0.35);
+  }
+
+  .from-station {
+    text-align: center;
+    font-size: 12.5px;
+    color: var(--text-dim);
+    margin-top: 12px;
+    line-height: 1.5;
+  }
+
+  .list {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+  }
+
+  .slot {
+    background: #fff;
+    border: 1px solid rgba(15,81,50,0.12);
+    border-radius: 12px;
+    padding: 10px 4px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-dark);
+    direction: ltr;
+    position: relative;
+  }
+
+  .slot.passed {
+    color: #a8b3ad;
+    background: #f4f6f5;
+    border-color: rgba(0,0,0,0.04);
+  }
+
+  .slot.next {
+    color: var(--turquoise);
+    border: 1.5px solid var(--turquoise);
+    background: #eefaf8;
+  }
+
+  .slot.next::after {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: -4px;
+    width: 8px;
+    height: 8px;
+    background: var(--amber);
+    border-radius: 50%;
+  }
+
+  .slot.last-service {
+    border: 1.5px solid var(--amber);
+    background: #fff8ec;
+    color: #a9660a;
+  }
+
+  .slot.last-service::before {
+    content: 'آخر';
+    position: absolute;
+    top: -9px;
+    right: 50%;
+    transform: translateX(50%);
+    background: var(--amber);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 1.5px 7px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(232,163,61,0.45);
+    white-space: nowrap;
+  }
+
+  .last-service-note {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    text-align: center;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: #a9660a;
+    background: #fff8ec;
+    border: 1px solid rgba(232,163,61,0.35);
+    border-radius: 10px;
+    padding: 7px 10px;
+    margin-top: 10px;
+  }
+
+  .last-service-note.show {
+    display: flex;
+  }
+
+  /* ---------- Channel Button ---------- */
+  .channel-btn {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 12px 14px;
+    border: none;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--green-main), var(--green-deep));
+    color: #ffffff;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    font-size: 13.5px;
+    font-weight: 700;
+    letter-spacing: 0.1px;
+    box-shadow: 0 6px 16px rgba(15,81,50,0.28);
+    cursor: pointer;
+  }
+
+  .channel-btn svg {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+  }
+
+  .channel-btn:active {
+    transform: scale(0.98);
+  }
+
+  .channel-error-toast {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%) translateY(20px);
+    max-width: 88%;
+    background: rgba(23,51,42,0.94);
+    color: #fff;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    text-align: center;
+    padding: 11px 18px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    z-index: 1100;
+    opacity: 0;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+    pointer-events: none;
+  }
+
+  .channel-error-toast.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .footer-note {
+    text-align: center;
+    font-size: 11px;
+    color: var(--text-dim);
+    margin-top: 16px;
+    opacity: 0.85;
+  }
+
+  .brand {
+    text-align: center;
+    color: rgba(255,255,255,0.85);
+    text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-top: 14px;
+    text-transform: uppercase;
+  }
+
+  /* ---------- Exit Button & Exit Overlay ---------- */
+  .exit-btn {
+    position: fixed;
+    top: 14px;
+    left: 14px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--panel);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(15,81,50,0.15);
+    color: var(--green-deep);
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 13px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    cursor: pointer;
+  }
+
+  .exit-btn svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .exit-btn:active {
+    transform: scale(0.96);
+  }
+
+  /* ---------- About Button & Modal ---------- */
+  .about-btn {
+    position: fixed;
+    top: 14px;
+    right: 14px;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--panel);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(15,81,50,0.15);
+    color: var(--green-deep);
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 7px 13px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+    cursor: pointer;
+  }
+
+  .about-btn svg {
+    width: 13px;
+    height: 13px;
+  }
+
+  .about-btn:active {
+    transform: scale(0.96);
+  }
+
+  .about-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    background: rgba(15,30,24,0.55);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  .about-overlay.show {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .about-card {
+    width: 100%;
+    max-width: 340px;
+    background: #ffffff;
+    border-radius: 20px;
+    padding: 26px 22px 20px;
+    text-align: center;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+    transform: translateY(14px) scale(0.97);
+    transition: transform 0.3s ease;
+    max-height: 86vh;
+    overflow-y: auto;
+  }
+
+  .about-overlay.show .about-card {
+    transform: translateY(0) scale(1);
+  }
+
+  .about-card img.about-logo {
+    height: 150px;
+    width: auto;
+    margin: 0 auto 10px;
+    display: block;
+  }
+
+  .about-card h2 {
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--green-deep);
+    margin: 0 0 12px;
+  }
+
+  .about-card .about-desc {
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    font-size: 11.5px;
+    line-height: 1.9;
+    color: var(--text-dim);
+    text-align: justify;
+    margin-bottom: 12px;
+  }
+
+  .about-card .about-rights {
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    font-size: 12px;
+    line-height: 1.9;
+    color: var(--text-dim);
+    margin-bottom: 14px;
+  }
+
+  .about-divider {
+    width: 42px;
+    height: 3px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--green-main), var(--turquoise));
+    margin: 4px auto 14px;
+  }
+
+  .about-card .about-designer-label {
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    font-size: 11.5px;
+    font-weight: 700;
+    color: var(--amber);
+    margin-bottom: 4px;
+  }
+
+  .about-card .about-company {
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 6px;
+  }
+
+  .about-card .about-engineer {
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: #17332a;
+    margin-bottom: 12px;
+  }
+
+  .about-card .about-phone-label {
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-dim);
+    margin-bottom: 2px;
+  }
+
+  .about-card .about-phone-label:not(:first-of-type) {
+    margin-top: 10px;
+  }
+
+  .about-card .about-phone {
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--green-main);
+    direction: ltr;
+    margin-bottom: 4px;
+  }
+
+  .about-card .about-version-num {
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--green-deep);
+    direction: ltr;
+    margin-bottom: 14px;
+  }
+
+  .about-card .about-version {
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    font-size: 10.5px;
+    font-weight: 600;
+    color: rgba(23,51,42,0.45);
+    border-top: 1px solid rgba(15,81,50,0.1);
+    padding-top: 10px;
+  }
+
+  .about-close-btn {
+    margin-top: 14px;
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--green-main), var(--green-deep));
+    color: #fff;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+
+  .about-close-btn:active {
+    transform: scale(0.98);
+  }
+
+  .wrap.fading-out {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+  }
+
+  .exit-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: var(--green-deep);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.6s ease;
+  }
+
+  .exit-overlay.show {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .exit-overlay img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* ---------- Holiday / No-Service Screen ---------- */
+  .holiday-panel {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 34px 22px 30px;
+  }
+
+  .holiday-panel.show {
+    display: flex;
+  }
+
+  .holiday-icon {
+    width: 92px;
+    height: 92px;
+    margin-bottom: 18px;
+    filter: drop-shadow(0 8px 16px rgba(15,81,50,0.25));
+  }
+
+  .holiday-title {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--green-deep);
+    line-height: 1.9;
+    max-width: 300px;
+  }
+
+  .holiday-sub {
+    margin-top: 10px;
+    font-size: 13.5px;
+    font-weight: 500;
+    color: var(--text-dim);
+    line-height: 1.9;
+    max-width: 280px;
+  }
+
+  .holiday-divider {
+    width: 46px;
+    height: 3px;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--green-main), var(--turquoise));
+    margin: 16px 0;
+  }
+
+  /* ---------- Splash Screen ---------- */
+  .splash-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: opacity 0.6s ease;
+  }
+
+  .splash-screen img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .splash-screen.hide {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .splash-loader {
+    position: absolute;
+    bottom: 9%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    z-index: 2;
+  }
+
+  .splash-spinner {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: 3.5px solid rgba(15,81,50,0.15);
+    border-top-color: var(--green-deep);
+    animation: splashSpin 0.8s linear infinite;
+  }
+
+  @keyframes splashSpin {
+    to { transform: rotate(360deg); }
+  }
+
+  .splash-loader-text {
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--green-deep);
+    background: rgba(255,255,255,0.75);
+    padding: 4px 14px;
+    border-radius: 20px;
+    letter-spacing: 0.3px;
+  }
+
+
+  /* =========================================================
+     RESPONSIVE TEST V1
+     هدف: نمایش پایدار روی گوشی‌های کوچک، بزرگ، ناچ و پانچ‌هول
+     ========================================================= */
+  :root {
+    --safe-top: env(safe-area-inset-top, 0px);
+    --safe-right: env(safe-area-inset-right, 0px);
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-left: env(safe-area-inset-left, 0px);
+  }
+
+  html {
+    width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+    overscroll-behavior-x: none;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    width: 100%;
+    min-width: 0;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    padding-top: var(--safe-top);
+    padding-right: var(--safe-right);
+    padding-bottom: var(--safe-bottom);
+    padding-left: var(--safe-left);
+  }
+
+  button, .tab, .slot {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  .wrap {
+    width: min(100%, 430px);
+    min-height: 100dvh;
+    padding: clamp(14px, 3.5vw, 22px) clamp(10px, 4vw, 16px)
+             clamp(18px, 5vw, 30px);
+  }
+
+  .top-logo-wrap img {
+    height: clamp(76px, 22vw, 108px);
+    max-width: min(72vw, 220px);
+    object-fit: contain;
+  }
+
+  .top-title .line-name {
+    font-size: clamp(12px, 3.4vw, 15px);
+  }
+
+  .top-title h1 {
+    font-size: clamp(16px, 4.5vw, 19px);
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+  }
+
+  .spacer {
+    min-height: clamp(10px, 4vh, 6vh);
+  }
+
+  .sheet {
+    width: 100%;
+    min-width: 0;
+    padding: clamp(12px, 4vw, 18px) clamp(10px, 3.8vw, 16px)
+             clamp(14px, 4.5vw, 20px);
+    border-radius: clamp(18px, 6vw, 26px) clamp(18px, 6vw, 26px)
+                   clamp(16px, 5vw, 22px) clamp(16px, 5vw, 22px);
+  }
+
+  .next-card {
+    min-width: 0;
+    padding: clamp(12px, 3.5vw, 16px) clamp(12px, 4vw, 18px);
+  }
+
+  .next-info {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .next-info .from,
+  .from-station,
+  .footer-note,
+  .channel-btn span {
+    overflow-wrap: anywhere;
+    word-break: normal;
+  }
+
+  .next-info .time {
+    font-size: clamp(25px, 8vw, 30px);
+  }
+
+  .countdown {
+    flex: 0 0 auto;
+    min-width: clamp(66px, 20vw, 78px);
+    padding: 7px 9px;
+  }
+
+  .countdown .num {
+    font-size: clamp(18px, 6vw, 22px);
+  }
+
+  .tabs {
+    min-width: 0;
+  }
+
+  .tab {
+    min-width: 0;
+    font-size: clamp(12px, 3.8vw, 14px);
+    white-space: nowrap;
+  }
+
+  .list {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(5px, 2vw, 8px);
+  }
+
+  .slot {
+    min-width: 0;
+    padding: clamp(8px, 2.8vw, 10px) 2px;
+    font-size: clamp(13px, 4vw, 15px);
+  }
+
+  .channel-btn {
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px clamp(8px, 3vw, 14px);
+    font-size: clamp(11px, 3.4vw, 13.5px);
+  }
+
+  .exit-btn, .about-btn {
+    top: calc(var(--safe-top) + 10px);
+    padding: 7px clamp(9px, 3vw, 13px);
+    max-width: 34vw;
+    white-space: nowrap;
+  }
+
+  .exit-btn { left: calc(var(--safe-left) + 10px); }
+  .about-btn { right: calc(var(--safe-right) + 10px); }
+
+  .about-overlay {
+    padding: max(14px, var(--safe-top))
+             max(14px, var(--safe-right))
+             max(14px, var(--safe-bottom))
+             max(14px, var(--safe-left));
+  }
+
+  .about-card {
+    max-width: 340px;
+    max-height: min(86vh, 700px);
+    overflow-y: auto;
+  }
+
+  .about-card img.about-logo {
+    height: clamp(105px, 34vw, 150px);
+    max-width: 80%;
+    object-fit: contain;
+  }
+
+  .holiday-panel {
+    min-width: 0;
+    padding: clamp(24px, 8vw, 34px) clamp(12px, 6vw, 22px) clamp(22px, 7vw, 30px);
+  }
+
+  .holiday-title {
+    max-width: 100%;
+    font-size: clamp(16px, 5vw, 19px);
+    overflow-wrap: anywhere;
+  }
+
+  .holiday-sub {
+    max-width: 100%;
+    font-size: clamp(12px, 3.8vw, 13.5px);
+  }
+
+  .splash-screen,
+  .exit-overlay {
+    width: 100vw;
+    height: 100dvh;
+    padding: var(--safe-top) var(--safe-right) var(--safe-bottom) var(--safe-left);
+  }
+
+  .splash-screen img,
+  .exit-overlay img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  @media (max-height: 650px) {
+    .wrap { padding-top: 12px; }
+    .top-logo-wrap { margin-bottom: 3px; }
+    .top-logo-wrap img { height: 64px; }
+    .spacer { min-height: 4px; }
+    .sheet { padding-top: 10px; padding-bottom: 12px; }
+    .footer-note { margin-top: 8px; }
+    .brand { margin-top: 8px; }
+  }
+
+  @media (max-width: 340px) {
+    .list { gap: 4px; }
+    .slot { font-size: 12px; }
+    .next-card { gap: 6px; }
+    .countdown { min-width: 62px; }
+    .exit-btn, .about-btn { font-size: 11px; }
+  }
+
+  @media (min-width: 600px) {
+    .wrap { max-width: 460px; }
+  }
+
+
+  /* Seasonal theme variables */
+  body.season-spring { --green-main:#2e9f63; --green-deep:#17613d; --green-soft:#edf9f1; --turquoise:#53b89e; --amber:#e6a23c; }
+  body.season-summer { --green-main:#218b68; --green-deep:#0d5a46; --green-soft:#eaf8f4; --turquoise:#2ca6a4; --amber:#f0a63a; }
+  body.season-autumn { --green-main:#8b6a2e; --green-deep:#5d4520; --green-soft:#fbf3df; --turquoise:#9a7b42; --amber:#c9782c; }
+  body.season-winter { --green-main:#347a91; --green-deep:#214e62; --green-soft:#edf6fa; --turquoise:#5ca8bd; --amber:#d39a42; }
+
+</style>
+</head>
+<body>
+
+<button class="exit-btn" id="exitBtn" onclick="triggerAppExit()" type="button">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path>
+    <polyline points="16 17 21 12 16 7"></polyline>
+    <line x1="21" y1="12" x2="9" y2="12"></line>
+  </svg>
+  خروج
+</button>
+
+<button class="about-btn" id="aboutBtn" onclick="openAboutDialog()" type="button">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="12" cy="12" r="10"></circle>
+    <line x1="12" y1="16" x2="12" y2="12"></line>
+    <line x1="12" y1="8" x2="12.01" y2="8"></line>
+  </svg>
+  درباره
+</button>
+
+<div class="about-overlay" id="aboutOverlay" onclick="if(event.target===this) closeAboutDialog()">
+  <div class="about-card">
+    <img class="about-logo" src="logo2.png" alt="لوگوی رایان نوین بوستان">
+    <h2>درباره برنامه</h2>
+    <div class="about-desc">
+      اپلیکیشن اتوبوس بوستان زر با هدف ارائه اطلاعات دقیق و به‌روز زمان حرکت سرویس‌ها، برنامه‌های رفت‌وبرگشت و اطلاعیه‌های مسیر بوستان زر–اصفهان طراحی و توسعه یافته است تا دسترسی کاربران به خدمات حمل‌ونقل را سریع‌تر و آسان‌تر کند.
+    </div>
+    <div class="about-rights">
+      تمامی حقوق مادی و معنوی این اپلیکیشن متعلق به شهرداری بوستان زر است.
+    </div>
+    <div class="about-divider"></div>
+    <div class="about-designer-label">طراح و توسعه‌دهنده</div>
+    <div class="about-company">شرکت نرم‌افزاری رایان نوین بوستان</div>
+    <div class="about-designer-label">مدیر پروژه و توسعه‌دهنده</div>
+    <div class="about-engineer">مهندس مرتضی رحمانی</div>
+    <div class="about-phone-label">تلفن تماس</div>
+    <div class="about-phone">09120220805</div>
+    <div class="about-phone-label">نسخه برنامه</div>
+    <div class="about-version-num">Version 1.0.1</div>
+    <div class="about-version">© تمامی حقوق محفوظ است.</div>
+    <button class="about-close-btn" onclick="closeAboutDialog()" type="button">بستن</button>
+  </div>
+</div>
+
+<div class="exit-overlay" id="exitOverlay">
+  <img id="exitImg" alt="خروج از برنامه" onerror="this.style.display='none'">
+</div>
+
+<div class="wrap">
+  <div class="top-title">
+    <div class="top-logo-wrap">
+      <img src="logo1.png" alt="لوگوی رایان نوین بوستان">
+    </div>
+    <div class="line-name">اتوبوسرانی واحد</div>
+    <h1>بوستان زر – اصفهان</h1>
+  </div>
+
+  <div class="spacer"></div>
+
+  <div class="sheet">
+    <div id="scheduleView">
+      <div class="next-card" id="nextCard">
+        <div class="next-info">
+          <div class="label"><span class="dot"></span> اتوبوس بعدی</div>
+          <div class="time" id="nextTime">--:--</div>
+          <div class="from" id="nextFrom">در حال بارگذاری...</div>
+        </div>
+        <div class="countdown">
+          <div class="num" id="countdownNum">--</div>
+          <div class="txt">تا حرکت</div>
+        </div>
+      </div>
+
+      <div class="tabs">
+        <div class="tab active" data-mode="depart" onclick="setMode('depart')">رفت</div>
+        <div class="tab" data-mode="return" onclick="setMode('return')">بازگشت</div>
+      </div>
+
+      <div class="from-station" id="fromStation">
+        رفت از ایستگاه امامزاده سید محمد(ع) بوستان زر
+      </div>
+
+      <div class="list" id="list"></div>
+
+      <div class="last-service-note" id="lastServiceNote"></div>
+
+      <button class="channel-btn" id="channelBtn" onclick="openInfoChannel()" type="button">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+          <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+        </svg>
+        <span>📢 کانال اطلاع‌رسانی اتوبوس بوستان زر</span>
+      </button>
+
+      <div class="footer-note">
+        زمان‌ها تقریبی و بر اساس برنامه‌ی اعلامی خط هستند
+      </div>
+    </div>
+
+    <div class="holiday-panel" id="holidayPanel">
+      <svg class="holiday-icon" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="busGrad" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#1f8a4c"/>
+            <stop offset="100%" stop-color="#0f5132"/>
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="48" fill="#eaf5ee"/>
+        <circle cx="50" cy="50" r="48" fill="none" stroke="#1f8a4c" stroke-width="2" opacity="0.35"/>
+        <rect x="26" y="38" width="48" height="28" rx="7" fill="url(#busGrad)"/>
+        <rect x="31" y="43" width="10" height="9" rx="2" fill="#eaf5ee"/>
+        <rect x="45" y="43" width="10" height="9" rx="2" fill="#eaf5ee"/>
+        <rect x="59" y="43" width="10" height="9" rx="2" fill="#eaf5ee"/>
+        <circle cx="35" cy="68" r="5.5" fill="#17332a"/>
+        <circle cx="65" cy="68" r="5.5" fill="#17332a"/>
+        <circle cx="35" cy="68" r="2.2" fill="#eaf5ee"/>
+        <circle cx="65" cy="68" r="2.2" fill="#eaf5ee"/>
+        <path d="M20 76 h60" stroke="#1f8a4c" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+        <g>
+          <circle cx="72" cy="30" r="13" fill="#e8a33d"/>
+          <path d="M65 30 l5 5 l9 -10" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" transform="rotate(180 72 30)"/>
+          <path d="M66 24 L78 36 M78 24 L66 36" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+        </g>
+      </svg>
+      <div class="holiday-title">به علت تعطیلی</div>
+      <div class="holiday-divider"></div>
+      <div class="holiday-sub"></div>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="splash-screen" id="splashScreen">
+  <img src="splash.png" alt="بوستان زر باس">
+  <div class="splash-loader">
+    <div class="splash-spinner"></div>
+    <div class="splash-loader-text">در حال بارگذاری...</div>
+  </div>
+</div>
+
+<script>
+const departTimes = ["06:15","08:00","09:35","11:00","12:45","14:20","16:05","17:45"];
+const returnTimes = ["07:05","08:50","10:20","11:50","13:35","15:10","16:55","19:00"];
+
+const fromDepart = "رفت از ایستگاه امامزاده سید محمد(ع) بوستان زر";
+const fromReturn = "بازگشت از ایستگاه پایانه اندیشه اصفهان";
+
+let currentMode = 'depart';
+
+function toMinutes(t) {
+  const [h, m] = t.split(':').map(Number);
+  return h * 60 + m;
+}
+
+function formatNow() {
+  const now = new Date();
+  return now.getHours() * 60 + now.getMinutes();
+}
+
+// پنج‌شنبه‌ها؟ (طبق درخواست: آخرین سرویس پنج‌شنبه‌ها ساعت ۱۳:۳۵ است)
+function isThursdayToday() {
+  return new Date().getDay() === 4; // 0=یکشنبه ... 4=پنج‌شنبه
+}
+
+const THURSDAY_CUTOFF = toMinutes('13:35');
+
+// فهرست ساعات هر مسیر را برمی‌گرداند؛ در پنج‌شنبه‌ها بعد از ۱۳:۳۵ چیزی نمایش داده نمی‌شود
+function getTimesForToday(mode) {
+  const base = mode === 'depart' ? departTimes : returnTimes;
+  if (isThursdayToday()) {
+    return base.filter(t => toMinutes(t) <= THURSDAY_CUTOFF);
+  }
+  return base;
+}
+
+function renderList() {
+  const times = getTimesForToday(currentMode);
+  const nowMin = formatNow();
+  const listEl = document.getElementById('list');
+  listEl.innerHTML = '';
+
+  let nextIndexForMode = times.findIndex(t => toMinutes(t) > nowMin);
+  const lastIndex = times.length - 1;
+
+  times.forEach((t, i) => {
+    const div = document.createElement('div');
+    div.className = 'slot';
+    if (toMinutes(t) <= nowMin) div.classList.add('passed');
+    if (i === nextIndexForMode) div.classList.add('next');
+    if (i === lastIndex) div.classList.add('last-service');
+    div.textContent = t;
+    listEl.appendChild(div);
+  });
+
+  document.getElementById('fromStation').textContent =
+    currentMode === 'depart' ? fromDepart : fromReturn;
+
+  const noteEl = document.getElementById('lastServiceNote');
+  if (lastIndex >= 0) {
+    noteEl.textContent = '⏰ آخرین سرویس امروز، ساعت ' + times[lastIndex];
+    noteEl.classList.add('show');
+  } else {
+    noteEl.classList.remove('show');
+  }
+}
+
+function setMode(mode) {
+  currentMode = mode;
+  document.querySelectorAll('.tab').forEach(tab => {
+    tab.classList.toggle('active', tab.dataset.mode === mode);
+  });
+  renderList();
+}
+
+function formatCountdown(diff) {
+  if (diff < 60) return diff + ' دقیقه';
+  const h = Math.floor(diff / 60);
+  const m = diff % 60;
+  return h + ':' + String(m).padStart(2, '0');
+}
+
+function updateNextGlobal() {
+  const nowMin = formatNow();
+  const thursday = isThursdayToday();
+
+  const all = [
+    ...getTimesForToday('depart').map(t => ({ t, min: toMinutes(t), mode: 'depart' })),
+    ...getTimesForToday('return').map(t => ({ t, min: toMinutes(t), mode: 'return' })),
+  ].sort((a, b) => a.min - b.min);
+
+  const upcoming = all.filter(x => x.min > nowMin);
+  const card = document.getElementById('nextCard');
+  const timeEl = document.getElementById('nextTime');
+  const fromEl = document.getElementById('nextFrom');
+  const countEl = document.getElementById('countdownNum');
+
+  if (upcoming.length === 0) {
+    card.classList.add('ended');
+    timeEl.textContent = 'پایان سرویس';
+    fromEl.textContent = thursday
+      ? 'به دلیل پنج‌شنبه بودن، سرویس امروز زودتر پایان یافت'
+      : 'فردا از ساعت ۰۶:۱۵ شروع می‌شود';
+    countEl.textContent = '--';
+  } else {
+    card.classList.remove('ended');
+    const next = upcoming[0];
+    timeEl.textContent = next.t;
+    fromEl.textContent = next.mode === 'depart' ? fromDepart : fromReturn;
+    const diff = next.min - nowMin;
+    countEl.textContent = formatCountdown(diff);
+  }
+}
+
+/* =========================================================
+   تشخیص خودکار جمعه و تعطیلات رسمی ایران
+   (تبدیل تقویم میلادی به شمسی و قمری بدون نیاز به اینترنت)
+   ========================================================= */
+
+function div_(a, b) { return ~~(a / b); }
+function mod_(a, b) { return a - ~~(a / b) * b; }
+
+// --- تبدیل میلادی به شمسی (جلالی) ---
+function g2d(gy, gm, gd) {
+  var d = div_((gy + div_(gm - 8, 6) + 100100) * 1461, 4)
+      + div_(153 * mod_(gm + 9, 12) + 2, 5)
+      + gd - 34840408;
+  d = d - div_(div_(gy + 100100 + div_(gm - 8, 6), 100) * 3, 4) + 752;
+  return d;
+}
+
+function d2g(jdn) {
+  var j = 4 * jdn + 139361631;
+  j = j + div_(div_(4 * jdn + 183187720, 146097) * 3, 4) * 4 - 3908;
+  var i = div_(mod_(j, 1461), 4) * 5 + 308;
+  var gd = div_(mod_(i, 153), 5) + 1;
+  var gm = mod_(div_(i, 153), 12) + 1;
+  var gy = div_(j, 1461) - 100100 + div_(8 - gm, 6);
+  return [gy, gm, gd];
+}
+
+function jalCal(jy) {
+  var breaks = [-61, 9, 38, 199, 426, 686, 756, 818, 1111, 1181, 1210,
+                1635, 2060, 2097, 2192, 2262, 2324, 2394, 2456, 3178];
+  var bl = breaks.length, gy = jy + 621, leapJ = -14, jp = breaks[0], jm, jump;
+  for (var i = 1; i < bl; i += 1) {
+    jm = breaks[i];
+    jump = jm - jp;
+    if (jy < jm) break;
+    leapJ = leapJ + div_(jump, 33) * 8 + div_(mod_(jump, 33), 4);
+    jp = jm;
+  }
+  var n = jy - jp;
+  leapJ = leapJ + div_(n, 33) * 8 + div_(mod_(n, 33) + 3, 4);
+  if (mod_(jump, 33) === 4 && jump - n === 4) leapJ += 1;
+  var leapG = div_(gy, 4) - div_((div_(gy, 100) + 1) * 3, 4) - 150;
+  var march = 20 + leapJ - leapG;
+  if (jump - n < 6) n = n - jump + div_(jump, 33) * 33;
+  var leap = mod_(mod_(n + 1, 33) - 1, 4);
+  if (leap === -1) leap = 4;
+  return { leap: leap, gy: gy, march: march };
+}
+
+function d2j(jdn) {
+  var gy = d2g(jdn)[0], jy = gy - 621, r = jalCal(jy);
+  var jdn1f = g2d(gy, 3, r.march);
+  var k = jdn - jdn1f, jd, jm;
+  if (k >= 0) {
+    if (k <= 185) {
+      jm = 1 + div_(k, 31);
+      jd = mod_(k, 31) + 1;
+      return [jy, jm, jd];
+    }
+    k -= 186;
+  } else {
+    jy -= 1;
+    k += 179;
+    if (r.leap === 1) k += 1;
+  }
+  jm = 7 + div_(k, 30);
+  jd = mod_(k, 30) + 1;
+  return [jy, jm, jd];
+}
+
+function toJalaali(gy, gm, gd) {
+  return d2j(g2d(gy, gm, gd));
+}
+
+
+function applySeasonTheme() {
+  const now = new Date();
+  const j = toJalaali(now.getFullYear(), now.getMonth() + 1, now.getDate());
+  const month = j[1];
+  document.body.classList.remove('season-spring','season-summer','season-autumn','season-winter');
+  if (month >= 1 && month <= 3) document.body.classList.add('season-spring');
+  else if (month >= 4 && month <= 6) document.body.classList.add('season-summer');
+  else if (month >= 7 && month <= 9) document.body.classList.add('season-autumn');
+  else document.body.classList.add('season-winter');
+}
+
+// --- تبدیل میلادی به قمری (تقریبی، الگوریتم جدولی رایج) ---
+function gregorianToJDN(gy, gm, gd) {
+  var a = Math.floor((14 - gm) / 12);
+  var y = gy + 4800 - a;
+  var m = gm + 12 * a - 3;
+  return gd + Math.floor((153 * m + 2) / 5) + 365 * y + Math.floor(y / 4)
+       - Math.floor(y / 100) + Math.floor(y / 400) - 32045;
+}
+
+function jdnToHijri(jdn) {
+  var jd = jdn - 1948440 + 10632;
+  var n = Math.floor((jd - 1) / 10631);
+  jd = jd - 10631 * n + 354;
+  var j = Math.floor((10985 - jd) / 5316) * Math.floor((50 * jd) / 17719)
+        + Math.floor(jd / 5670) * Math.floor((43 * jd) / 15238);
+  jd = jd - Math.floor((30 - j) / 15) * Math.floor((17719 * j) / 50)
+          - Math.floor(j / 16) * Math.floor((15238 * j) / 43) + 29;
+  var m = Math.floor((24 * jd) / 709);
+  var d = jd - Math.floor((709 * m) / 24);
+  var y = 30 * n + j - 30;
+  return [y, m, d];
+}
+
+function toHijri(gy, gm, gd) {
+  return jdnToHijri(gregorianToJDN(gy, gm, gd));
+}
+
+// --- فهرست تعطیلات ثابت شمسی (ماه، روز) که هر سال تکرار می‌شوند ---
+var jalaliFixedHolidays = [
+  [1, 1], [1, 2], [1, 3], [1, 4],   // نوروز
+  [1, 12],                          // روز جمهوری اسلامی
+  [1, 13],                          // روز طبیعت (سیزده‌به‌در)
+  [3, 14],                          // رحلت امام خمینی
+  [3, 15],                          // قیام ۱۵ خرداد
+  [12, 29],                         // ملی شدن صنعت نفت
+];
+
+// --- تعطیلات رسمی سال ۱۴۰۵ (طبق تقویم رسمی - شامل مناسبت‌های قمری تبدیل‌شده به تاریخ شمسی) ---
+// نکته: چون مناسبت‌های قمری هرسال چند روز در تقویم شمسی جابه‌جا می‌شوند،
+// این لیست دقیقاً مخصوص سال ۱۴۰۵ (فروردین ۱۴۰۵ تا اسفند ۱۴۰۵) است.
+var jalaliHolidays1405 = [
+  [1, 1],   // عید نوروز + عید سعید فطر
+  [1, 2],   // عید نوروز + تعطیل عید فطر
+  [1, 3],   // عید نوروز
+  [1, 4],   // عید نوروز
+  [1, 12],  // روز جمهوری اسلامی ایران
+  [1, 13],  // روز طبیعت
+  [1, 25],  // شهادت امام جعفر صادق (ع)
+  [3, 6],   // عید قربان
+  [3, 14],  // رحلت امام خمینی (ره) + عید غدیر خم
+  [3, 15],  // قیام ۱۵ خرداد
+  [4, 3],   // تاسوعای حسینی
+  [4, 4],   // عاشورای حسینی
+  [5, 13],  // اربعین حسینی
+  [5, 21],  // رحلت رسول اکرم (ص) و شهادت امام حسن مجتبی (ع)
+  [5, 22],  // شهادت امام رضا (ع)
+  [5, 30],  // شهادت امام حسن عسکری (ع)
+  [6, 8],   // ولادت رسول اکرم (ص) و امام جعفر صادق (ع)
+  [8, 22],  // شهادت حضرت فاطمه زهرا (س)
+  [10, 2],  // ولادت حضرت علی (ع) و روز پدر
+  [10, 26], // مبعث رسول اکرم (ص)
+  [11, 15], // ولادت حضرت قائم (عج) - نیمه شعبان
+  [12, 19], // عید سعید فطر
+  [12, 20], // تعطیل عید سعید فطر
+  [12, 29], // ملی شدن صنعت نفت ایران
+];
+
+// --- فهرست تقریبی مناسبت‌های قمری برای سال‌های غیر از ۱۴۰۵ (محاسبه‌ای، نه رسمی) ---
+var hijriHolidaysApprox = [
+  [1, 9],   // تاسوعای حسینی
+  [1, 10],  // عاشورای حسینی
+  [2, 20],  // اربعین حسینی
+  [2, 28],  // رحلت پیامبر و شهادت امام حسن
+  [2, 30],  // شهادت امام رضا
+  [3, 8],   // شهادت امام حسن عسکری
+  [3, 17],  // میلاد پیامبر و امام صادق
+  [6, 3],   // شهادت حضرت فاطمه زهرا
+  [7, 13],  // ولادت امام علی
+  [7, 27],  // مبعث پیامبر
+  [8, 15],  // نیمه شعبان - ولادت امام زمان
+  [9, 21],  // شهادت امام علی
+  [10, 1],  // عید فطر
+  [10, 2],  // تعطیل پس از عید فطر
+  [12, 9],  // عرفه (در برخی سال‌ها)
+  [12, 10], // عید قربان
+  [12, 18], // عید غدیر خم
+];
+
+function isIranHolidayToday() {
+  var now = new Date();
+
+  // جمعه؟
+  if (now.getDay() === 5) return true; // JS: 5 = Friday
+
+  var gy = now.getFullYear(), gm = now.getMonth() + 1, gd = now.getDate();
+  var j = toJalaali(gy, gm, gd);
+  var jYear = j[0], jMonth = j[1], jDay = j[2];
+
+  // تعطیلات ثابت شمسی (هر سال یکسان)
+  for (var i = 0; i < jalaliFixedHolidays.length; i++) {
+    if (jalaliFixedHolidays[i][0] === jMonth && jalaliFixedHolidays[i][1] === jDay) return true;
+  }
+
+  if (jYear === 1405) {
+    // سال جاری: از لیست دقیق و رسمی سال ۱۴۰۵ استفاده کن
+    for (var i2 = 0; i2 < jalaliHolidays1405.length; i2++) {
+      if (jalaliHolidays1405[i2][0] === jMonth && jalaliHolidays1405[i2][1] === jDay) return true;
+    }
+  } else {
+    // سایر سال‌ها: چون لیست رسمی نداریم، از محاسبه تقریبی قمری استفاده کن
+    var h = toHijri(gy, gm, gd);
+    for (var k = 0; k < hijriHolidaysApprox.length; k++) {
+      if (hijriHolidaysApprox[k][0] === h[1] && hijriHolidaysApprox[k][1] === h[2]) return true;
+    }
+  }
+
+  return false;
+}
+
+function applyHolidayState() {
+  var holiday = isIranHolidayToday();
+  var scheduleEl = document.getElementById('scheduleView');
+  var holidayEl = document.getElementById('holidayPanel');
+  if (holiday) {
+    scheduleEl.style.display = 'none';
+    holidayEl.classList.add('show');
+  } else {
+    scheduleEl.style.display = '';
+    holidayEl.classList.remove('show');
+  }
+  return holiday;
+}
+
+function refresh() {
+  applySeasonTheme();
+  var holiday = applyHolidayState();
+  if (holiday) return; // در روز تعطیل نیازی به به‌روزرسانی جدول نیست
+  updateNextGlobal();
+  renderList();
+}
+
+refresh();
+setInterval(refresh, 30000);
+
+// --- Splash screen: نمایش چند ثانیه‌ای و سپس محو شدن خودکار ---
+(function () {
+  var splash = document.getElementById('splashScreen');
+  if (!splash) return;
+  setTimeout(function () {
+    splash.classList.add('hide');
+    setTimeout(function () {
+      splash.style.display = 'none';
+    }, 650); // هم‌زمان با پایان انیمیشن محو شدن
+  }, 2500); // مدت زمان نمایش صفحه اول (میلی‌ثانیه)
+})();
+
+/* =========================================================
+   دکمه خروج از برنامه
+   ========================================================= */
+
+// این دو مقدار به‌راحتی قابل تغییرند:
+var EXIT_IMAGE_SRC = 'exit.png';   // مسیر فایل تصویر خروج
+var EXIT_DISPLAY_DURATION = 3000;  // مدت زمان نمایش تصویر خروج (میلی‌ثانیه)
+
+var exitTriggered = false; // جلوگیری از اجرای چندباره در صورت کلیک مکرر
+
+function triggerAppExit() {
+  if (exitTriggered) return;
+  exitTriggered = true;
+
+  var wrap = document.querySelector('.wrap');
+  var overlay = document.getElementById('exitOverlay');
+  var exitBtn = document.getElementById('exitBtn');
+  var exitImg = document.getElementById('exitImg');
+
+  // غیرفعال کردن کامل تعامل کاربر با رابط فعلی
+  if (exitBtn) exitBtn.style.pointerEvents = 'none';
+  if (wrap) wrap.classList.add('fading-out');
+
+  // بارگذاری تصویر خروج (اگر بارگذاری نشود، خطایی رخ نمی‌دهد و روند خروج ادامه می‌یابد)
+  if (exitImg) exitImg.src = EXIT_IMAGE_SRC;
+  if (overlay) overlay.classList.add('show');
+
+  setTimeout(closeAppNow, EXIT_DISPLAY_DURATION);
+}
+
+function closeAppNow() {
+  // روش استاندارد: صدا زدن پل جاوااسکریپت <-> اندروید (تعریف‌شده در MainActivity.java)
+  try {
+    if (window.AndroidApp && typeof window.AndroidApp.closeApp === 'function') {
+      window.AndroidApp.closeApp();
+      return;
+    }
+  } catch (e) {
+    // نادیده گرفتن خطای احتمالی پل جاوااسکریپت و رفتن به حالت جایگزین
+  }
+  // حالت جایگزین: زمانی که در مرورگر معمولی (خارج از اپ اندروید) باز شده باشد
+  try { window.close(); } catch (e) {}
+}
+
+/* =========================================================
+   دیالوگ درباره برنامه
+   ========================================================= */
+
+function openAboutDialog() {
+  var overlay = document.getElementById('aboutOverlay');
+  if (overlay) overlay.classList.add('show');
+}
+
+function closeAboutDialog() {
+  var overlay = document.getElementById('aboutOverlay');
+  if (overlay) overlay.classList.remove('show');
+}
+
+/* =========================================================
+   دکمه کانال اطلاع‌رسانی (ایتا)
+   ========================================================= */
+
+var CHANNEL_URL = 'https://eitaa.com/BoostanezarBus';
+var CHANNEL_ERROR_MESSAGE = 'امکان دسترسی به کانال اطلاع‌رسانی بوستان زر وجود ندارد.';
+
+function openInfoChannel() {
+  try {
+    // روش استاندارد: صدا زدن پل جاوااسکریپت <-> اندروید (تعریف‌شده در MainActivity.java)
+    // که خودش تشخیص می‌دهد ایتا نصب است یا نه و به‌صورت مناسب لینک را باز می‌کند.
+    if (window.AndroidApp && typeof window.AndroidApp.openChannel === 'function') {
+      window.AndroidApp.openChannel(CHANNEL_URL);
+      return;
+    }
+    // حالت جایگزین: زمانی که در مرورگر معمولی (خارج از اپ اندروید) باز شده باشد
+    var win = window.open(CHANNEL_URL, '_blank');
+    if (!win) throw new Error('popup-blocked');
+  } catch (e) {
+    showChannelError();
+  }
+}
+
+function showChannelError() {
+  var existing = document.getElementById('channelErrorToast');
+  if (existing) return; // در حال نمایش است، دوباره نساز
+
+  var toast = document.createElement('div');
+  toast.id = 'channelErrorToast';
+  toast.className = 'channel-error-toast';
+  toast.textContent = CHANNEL_ERROR_MESSAGE;
+  document.body.appendChild(toast);
+
+  setTimeout(function () {
+    toast.classList.add('show');
+  }, 10);
+
+  setTimeout(function () {
+    toast.classList.remove('show');
+    setTimeout(function () {
+      if (toast.parentNode) toast.parentNode.removeChild(toast);
+    }, 400);
+  }, 3000);
+}
+</script>
+
+</body>
+</html>
